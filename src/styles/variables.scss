@@ -1,0 +1,18 @@
+$primary-color: #2563eb;
+$secondary-color: #3b82f6;
+$dark-bg: #0f172a;
+$light-text: #f8fafc;
+$transition-speed: 0.3s;
+
+$breakpoints: (
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px
+);
+
+@mixin responsive($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}

@@ -1,0 +1,30 @@
+@import 'variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: $light-text;
+  background: $dark-bg;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity $transition-speed ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
