@@ -7,8 +7,8 @@
           <span class="highlight">Karl Chan</span>
           <span
             class="waving-emoji"
-            :class="{ waving: isWaving }"
-            @click="wave"
+            @click.self.prevent="wave"
+            ref="emojiRef"
           >
             👋
           </span>
@@ -24,11 +24,13 @@
         <div class="tech-stack">
           <h3>Tech Stack</h3>
           <div class="tech-icons">
-            <i class="devicon-vuejs-plain"></i>
-            <i class="devicon-typescript-plain"></i>
-            <i class="devicon-nodejs-plain"></i>
-            <i class="devicon-postgresql-plain"></i>
-            <i class="devicon-docker-plain"></i>
+            <i class="devicon-javascript-plain" title="JavaScript"></i>
+            <i class="devicon-vuejs-plain" title="Vue.js"></i>
+            <i class="devicon-nodejs-plain" title="Node.js"></i>
+            <i class="devicon-vite-original-wordmark" title="Vite"></i>
+            <i class="devicon-microsoftsqlserver-plain-wordmark" title="Microsoft SQL Server"></i>
+            <i class="devicon-docker-plain" title="Docker"></i>
+            <i class="devicon-git-plain" title="GIT"></i>
           </div>
         </div>
       </div>
@@ -42,26 +44,34 @@ import { gsap } from "gsap";
 
 const titleRef = ref(null);
 const isWaving = ref(false);
+const emojiRef = ref(null);
+let waveAnimation = null;
+
 
 const wave = () => {
-  isWaving.value = true;
-  // Reset the waving state after animation ends
-  setTimeout(() => {
-    isWaving.value = false;
-  }, 2500); // Match this with the CSS animation duration
+  // Restart the wave animation each time the emoji is clicked
+  if (waveAnimation) {
+    waveAnimation.restart();
+  }
 };
 
 onMounted(() => {
-  gsap
-    .from(titleRef.value, {
-      duration: 2,
-      y: 50,
-      opacity: 0,
-      ease: "power3.out",
-    })
-    .then(() => {
-      wave();
-    });
+  gsap.from(titleRef.value, {
+    duration: 2,
+    y: 50,
+    opacity: 0,
+    ease: "power3.out",
+    onComplete: () => wave(),
+  });
+  // Set up the wave animation for the emoji
+  waveAnimation = gsap.to(emojiRef.value, {
+    rotate: 15,
+    yoyo: true,
+    repeat: 5,
+    duration: 0.3,
+    ease: "power1.inOut",
+    paused: true, // Keep it paused initially
+  });
 });
 </script>
 
@@ -101,7 +111,7 @@ onMounted(() => {
   }
 
   .waving {
-    animation: wave 2.5s ease-in-out;
+    animation: wave 2s ease-in-out;
   }
 
   @keyframes wave {
