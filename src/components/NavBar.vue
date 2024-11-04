@@ -2,7 +2,7 @@
   <nav :class="{ 'nav-scrolled': isScrolled }">
     <div class="container nav-content">
       <router-link to="/" class="logo">
-        <span>Dev</span>Portfolio
+        <span>Karl</span>Dev
       </router-link>
       <div class="nav-links" :class="{ 'nav-active': isMenuOpen }">
         <router-link to="/" active-class="active">Home</router-link>
@@ -11,9 +11,9 @@
         <router-link to="/contact" active-class="active">Contact</router-link>
       </div>
       <button class="menu-toggle" @click="toggleMenu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span>a</span>
+        <span>b</span>
+        <span>c</span>
       </button>
     </div>
   </nav>

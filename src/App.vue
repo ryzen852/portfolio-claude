@@ -2,36 +2,35 @@
   <div class="app">
     <NavBar />
     <main class="main-content">
-      <router-view v-slot="{ Component }">
-        <transition name="page" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+      <section class="hero" data-aos="fade-up">
+        <Home />
+      </section>
     </main>
     <AppFooter />
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-import NavBar from './components/NavBar.vue'
-import AppFooter from './components/AppFooter.vue'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import { onMounted } from "vue";
+import NavBar from "./components/NavBar.vue";
+import Home from "./views/Home.vue"
+import AppFooter from "./components/AppFooter.vue";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // Initialize AOS
 onMounted(() => {
   AOS.init({
-    duration: 800,
-    easing: 'ease-in-out',
-    once: true
-  })
-})
+    duration: 8000,
+    easing: "ease-in-out",
+    once: true,
+  });
+});
 </script>
 
 <style lang="scss">
 // Import main styles
-@import './styles/main.scss';
+@use "./styles/main.scss";
 
 .app {
   min-height: 100vh;
@@ -58,7 +57,7 @@ onMounted(() => {
 
 // Global styles
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -68,9 +67,9 @@ onMounted(() => {
 ::-webkit-scrollbar-thumb {
   background: $primary-color;
   border-radius: 4px;
-  
+
   &:hover {
-    background: darken($primary-color, 10%);
+    background: color.adjust($primary-color, $lightness: -10%);
   }
 }
 

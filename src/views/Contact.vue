@@ -94,8 +94,8 @@
   
   .form-group {
     input, textarea {
-      background: lighten($dark-bg, 5%);
-      border: 1px solid lighten($dark-bg, 10%);
+      background: color.adjust($dark-bg, $lightness: 5%);
+      border: 1px solid color.adjust($dark-bg, $lightness: 10%);
       color: $light-text;
       
       &:focus {

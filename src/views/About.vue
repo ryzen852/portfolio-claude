@@ -52,7 +52,7 @@
   
   .skill-category {
     li {
-      color: darken($light-text, 20%);
+      color: color.adjust($light-text, $lightness: -20%);
       transition: color 0.3s ease;
       
       &:hover {

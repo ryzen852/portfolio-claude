@@ -1,4 +1,4 @@
-@import 'variables';
+@use "@/styles/variables" as *;
 
 * {
   margin: 0;
@@ -7,10 +7,14 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
   color: $light-text;
   background: $dark-bg;
+}
+
+a:focus {
+  outline: 0;
 }
 
 .container {
