@@ -2,8 +2,17 @@
   <div class="app">
     <NavBar />
     <main class="main-content">
-      <section class="hero" data-aos="fade-up">
-        <Home />
+      <section id="home" class="section">
+        <HomeSection />
+      </section>
+      <section id="about" class="section">
+        <AboutSection />
+      </section>
+      <section id="projects" class="section">
+        <ProjectsSection />
+      </section>
+      <section id="contact" class="section">
+        <ContactSection />
       </section>
     </main>
     <AppFooter />
@@ -11,9 +20,12 @@
 </template>
 
 <script setup>
+import HomeSection from './views/HomeSection.vue';
+import AboutSection from './views/AboutSection.vue';
+import ProjectsSection from './views/ProjectsSection.vue';
+import ContactSection from './views/ContactSection.vue';
 import { onMounted } from "vue";
 import NavBar from "./components/NavBar.vue";
-import Home from "./views/Home.vue"
 import AppFooter from "./components/AppFooter.vue";
 import AOS from "aos";
 import "aos/dist/aos.css";

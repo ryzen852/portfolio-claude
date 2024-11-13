@@ -4,6 +4,34 @@ $dark-bg: #0f172a;
 $light-text: #f8fafc;
 $transition-speed: 0.3s;
 
+// Font Sizes
+$font-size-base: 1rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
+$font-size-xxl: 2rem;
+
+// Box Shadow
+$box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+$box-shadow-dark: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+// Color Variants
+$primary-color-light: lighten($primary-color, 10%);
+$primary-color-dark: darken($primary-color, 10%);
+$secondary-color-light: lighten($secondary-color, 10%);
+$secondary-color-dark: darken($secondary-color, 10%);
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+
+// Animation
+$animation-duration: 0.3s;
+$animation-timing: ease-in-out;
+
+// Breakpoints
 $breakpoints: (
   'sm': 640px,
   'md': 768px,
@@ -13,6 +41,7 @@ $breakpoints: (
 
 @use "sass:map"; // Import the map module
 
+// Responsive Mixin
 @mixin responsive($breakpoint) {
   @media (min-width: map.get($breakpoints, $breakpoint)) {
     @content;

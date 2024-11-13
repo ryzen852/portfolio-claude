@@ -7,7 +7,8 @@
           <span class="highlight">Karl Chan</span>
           <span
             class="waving-emoji"
-            @click.self.prevent="wave"
+            :class="{ waving: isWaving }"
+            @click.self.prevent="handleWaveClick"
             ref="emojiRef"
           >
             👋
@@ -24,13 +25,12 @@
         <div class="tech-stack">
           <h3>Tech Stack</h3>
           <div class="tech-icons">
-            <i class="devicon-javascript-plain" title="JavaScript"></i>
-            <i class="devicon-vuejs-plain" title="Vue.js"></i>
-            <i class="devicon-nodejs-plain" title="Node.js"></i>
-            <i class="devicon-vite-original-wordmark" title="Vite"></i>
-            <i class="devicon-microsoftsqlserver-plain-wordmark" title="Microsoft SQL Server"></i>
-            <i class="devicon-docker-plain" title="Docker"></i>
-            <i class="devicon-git-plain" title="GIT"></i>
+            <i
+              v-for="icon in techIcons"
+              :key="icon.name"
+              :class="icon.class"
+              :title="icon.name"
+            ></i>
           </div>
         </div>
       </div>
@@ -43,35 +43,37 @@ import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
 
 const titleRef = ref(null);
-const isWaving = ref(false);
 const emojiRef = ref(null);
-let waveAnimation = null;
+const isWaving = ref(false);
+const techIcons = ref([
+  { name: "JavaScript", class: "devicon-javascript-plain" },
+  { name: "Vue.js", class: "devicon-vuejs-plain" },
+  { name: "Node.js", class: "devicon-nodejs-plain" },
+  { name: "Vite", class: "devicon-vite-original-wordmark" },
+  { name: "SQL Server", class: "devicon-microsoftsqlserver-plain-wordmark" },
+  { name: "Docker", class: "devicon-docker-plain" },
+  { name: "Git", class: "devicon-git-plain" },
+]);
 
-
-const wave = () => {
-  // Restart the wave animation each time the emoji is clicked
-  if (waveAnimation) {
-    waveAnimation.restart();
+// Control the emoji wave animation with a cooldown to prevent multiple activations
+const handleWaveClick = () => {
+  if (!isWaving.value) {
+    isWaving.value = true;
+    setTimeout(() => (isWaving.value = false), 2000); // Set cooldown to match animation duration
   }
 };
 
 onMounted(() => {
-  gsap.from(titleRef.value, {
-    duration: 2,
-    y: 50,
-    opacity: 0,
-    ease: "power3.out",
-    onComplete: () => wave(),
-  });
-  // Set up the wave animation for the emoji
-  waveAnimation = gsap.to(emojiRef.value, {
-    rotate: 15,
-    yoyo: true,
-    repeat: 5,
-    duration: 0.3,
-    ease: "power1.inOut",
-    paused: true, // Keep it paused initially
-  });
+  gsap
+    .from(titleRef.value, {
+      duration: 2,
+      y: 50,
+      opacity: 0,
+      ease: "power3.out",
+    })
+    .then(() => {
+      handleWaveClick(); // Trigger the wave once after mounting
+    });
 });
 </script>
 
@@ -86,10 +88,6 @@ onMounted(() => {
     font-size: 3rem;
     margin-bottom: 1.5rem;
     line-height: 1.2;
-
-    @include responsive("md") {
-      font-size: 4rem;
-    }
 
     .highlight {
       color: $primary-color;
@@ -108,6 +106,7 @@ onMounted(() => {
     display: inline-block;
     cursor: pointer;
     transform-origin: bottom center;
+    transition: transform 0.2s ease;
   }
 
   .waving {
@@ -120,7 +119,7 @@ onMounted(() => {
     }
     10% {
       transform: rotate(14deg);
-    } /* The following five values can be played with to make the waving more or less extreme */
+    }
     20% {
       transform: rotate(-8deg);
     }
@@ -135,7 +134,7 @@ onMounted(() => {
     }
     60% {
       transform: rotate(0deg);
-    } /* Reset for the last half to pause */
+    }
     100% {
       transform: rotate(0deg);
     }
@@ -146,31 +145,31 @@ onMounted(() => {
   display: flex;
   gap: 1rem;
   margin-bottom: 3rem;
-}
 
-.btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all $transition-speed;
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all $transition-speed;
 
-  &.primary {
-    background: $primary-color;
-    color: $light-text;
-
-    &:hover {
-      background: color.adjust($primary-color, $lightness: -10%);
-    }
-  }
-
-  &.secondary {
-    border: 2px solid $primary-color;
-    color: $primary-color;
-
-    &:hover {
+    &.primary {
       background: $primary-color;
       color: $light-text;
+
+      &:hover {
+        background: color.adjust($primary-color, $lightness: -10%);
+      }
+    }
+
+    &.secondary {
+      border: 2px solid $primary-color;
+      color: $primary-color;
+
+      &:hover {
+        background: $primary-color;
+        color: $light-text;
+      }
     }
   }
 }
@@ -187,7 +186,7 @@ onMounted(() => {
     font-size: 2.5rem;
 
     i {
-      transition: all $transition-speed;
+      transition: all 0.3s ease;
 
       &:hover {
         color: $primary-color;

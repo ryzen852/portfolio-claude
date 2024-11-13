@@ -11,10 +11,17 @@ body {
   line-height: 1.6;
   color: $light-text;
   background: $dark-bg;
+  overflow-x: hidden;
 }
 
-a:focus {
-  outline: 0;
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color $transition-speed;
+
+  &:hover {
+    color: lighten($primary-color, 10%);
+  }
 }
 
 .container {
@@ -23,6 +30,7 @@ a:focus {
   padding: 0 1rem;
 }
 
+// Transition animations for page enter/leave
 .page-enter-active,
 .page-leave-active {
   transition: opacity $transition-speed ease;
@@ -32,3 +40,77 @@ a:focus {
 .page-leave-to {
   opacity: 0;
 }
+
+// Scrollbar styles for better UX
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: darken($dark-bg, 5%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 4px;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+}
+
+// Basic button styling
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background $transition-speed, color $transition-speed;
+
+  &--primary {
+    background: $primary-color;
+    color: $light-text;
+
+    &:hover {
+      background: darken($primary-color, 10%);
+    }
+  }
+
+  &--secondary {
+    border: 2px solid $primary-color;
+    color: $primary-color;
+
+    &:hover {
+      background: $primary-color;
+      color: $light-text;
+    }
+  }
+}
+
+// Headings styling for consistency
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  // color: $heading-color;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: $font-size-xxl;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: $font-size-xl;
+  margin-bottom: 1rem;
+}
+
+// Utility classes for spacing
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.pt-2 { padding-top: 0.5rem; }
+.pt-4 { padding-top: 1rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.pb-4 { padding-bottom: 1rem; }
