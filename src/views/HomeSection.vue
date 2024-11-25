@@ -1,50 +1,73 @@
 <template>
-  <main class="home">
-    <section class="hero">
-      <div class="container">
-        <h1 class="title" ref="titleRef">
-          Hi, My name is
-          <span class="highlight">Karl Chan</span>
-          <span
-            class="waving-emoji"
-            :class="{ waving: isWaving }"
-            @click.self.prevent="handleWaveClick"
-            ref="emojiRef"
-          >
-            👋
-          </span>
-          <br />Full Stack Developer
-        </h1>
-        <p class="subtitle">
-          Building beautiful web experiences with modern technologies
-        </p>
-        <div class="cta-buttons">
-          <a href="/#projects" class="btn primary">View Projects</a>
-          <a href="/#contact" class="btn secondary">Contact Me</a>
-        </div>
-        <div class="tech-stack">
-          <h3>Tech Stack</h3>
-          <div class="tech-icons">
-            <i
-              v-for="icon in techIcons"
-              :key="icon.name"
-              :class="icon.class"
-              :title="icon.name"
-            ></i>
-          </div>
+  <section id="home" class="hero">
+    <!--<Vue3Lottie
+      :animationData="lottieOptions.animationData"
+      :autoplay="lottieOptions.autoplay"
+      :loop="lottieOptions.loop"
+      class="lottie-background"
+    />-->
+    <div class="container">
+      <h1 class="title" ref="titleRef">
+        <div class="text-2xl mb-4">Hi, My name is</div>
+        <TypeWriter
+          class="highlight turret-road-extrabold"
+          :texts="['Karl Chan']"
+          :typeSpeed="150"
+          :deleteSpeed="100"
+          :delayBetween="4000"
+          :initialDelay="1000"
+        />
+        <!-- <span
+          class="waving-emoji"
+          :class="{ waving: isWaving }"
+          @click.self.prevent="handleWaveClick"
+          ref="emojiRef"
+        >
+          👋
+        </span> -->
+        <br />
+      </h1>
+      <h2 class="intro-description">
+        I'm a
+        <TextRotator :texts="roles" :interval="3000" :animationSpeed="1" />
+      </h2>
+      <p class="subtitle">
+        Building beautiful web experiences with modern technologies
+      </p>
+      <div class="cta-buttons">
+        <a href="/#projects" class="btn primary">View Projects</a>
+        <a href="/#contact" class="btn secondary">Get in touch</a>
+      </div>
+      <div class="tech-stack">
+        <h3>Tech Stack</h3>
+        <div class="tech-icons">
+          <i
+            v-for="icon in techIcons"
+            :key="icon.name"
+            :class="icon.class"
+            :title="icon.name"
+          ></i>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
+import { Vue3Lottie } from "vue3-lottie";
+import homeBackground from "@/assets/animations/Animation - 1731482932424.json"; // Path to your JSON file
+import TypeWriter from "@/components/TypeWriter.vue";
+import TextRotator from "@/components/TextRotator.vue";
 
+const lottieOptions = {
+  animationData: homeBackground,
+  autoplay: true,
+  loop: true,
+};
 const titleRef = ref(null);
-const emojiRef = ref(null);
-const isWaving = ref(false);
+
 const techIcons = ref([
   { name: "JavaScript", class: "devicon-javascript-plain" },
   { name: "Vue.js", class: "devicon-vuejs-plain" },
@@ -53,6 +76,11 @@ const techIcons = ref([
   { name: "SQL Server", class: "devicon-microsoftsqlserver-plain-wordmark" },
   { name: "Docker", class: "devicon-docker-plain" },
   { name: "Git", class: "devicon-git-plain" },
+]);
+const roles = ref([
+  "Full Stack Developer",
+  "Frontend Developer",
+  "Backend Developer",
 ]);
 
 // Control the emoji wave animation with a cooldown to prevent multiple activations
@@ -64,28 +92,39 @@ const handleWaveClick = () => {
 };
 
 onMounted(() => {
-  gsap
-    .from(titleRef.value, {
-      duration: 2,
-      y: 50,
-      opacity: 0,
-      ease: "power3.out",
-    })
-    .then(() => {
-      handleWaveClick(); // Trigger the wave once after mounting
-    });
+  gsap.from(titleRef.value, {
+    duration: 2,
+    y: 50,
+    opacity: 0,
+    ease: "power3.out",
+  });
+  // .then(() => {
+  //   handleWaveClick(); // Trigger the wave once after mounting
+  // });
 });
 </script>
 
 <style lang="scss" scoped>
 .hero {
-  min-height: 100vh;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   padding: 6rem 0;
 
+  .turret-road-extrabold {
+    font-family: "Turret Road", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  .intro-description {
+    font-size: $font-size-lg;
+  }
+
   .title {
-    font-size: 3rem;
     margin-bottom: 1.5rem;
     line-height: 1.2;
 
@@ -96,49 +135,57 @@ onMounted(() => {
   }
 
   .subtitle {
-    font-size: 1.25rem;
+    font-size: $font-size-lg;
     margin-bottom: 2rem;
-    opacity: 0.9;
+    opacity: 0.5;
   }
 
-  .waving-emoji {
-    font-size: 50px;
-    display: inline-block;
-    cursor: pointer;
-    transform-origin: bottom center;
-    transition: transform 0.2s ease;
-  }
+  // .waving-emoji {
+  //   font-size: 50px;
+  //   display: inline-block;
+  //   cursor: pointer;
+  //   transform-origin: bottom center;
+  //   transition: transform 0.2s ease;
+  // }
 
-  .waving {
-    animation: wave 2s ease-in-out;
-  }
+  // .waving {
+  //   animation: wave 2s ease-in-out;
+  // }
 
-  @keyframes wave {
-    0% {
-      transform: rotate(0deg);
-    }
-    10% {
-      transform: rotate(14deg);
-    }
-    20% {
-      transform: rotate(-8deg);
-    }
-    30% {
-      transform: rotate(14deg);
-    }
-    40% {
-      transform: rotate(-4deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-    60% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
+  // @keyframes wave {
+  //   0% {
+  //     transform: rotate(0deg);
+  //   }
+  //   10% {
+  //     transform: rotate(14deg);
+  //   }
+  //   20% {
+  //     transform: rotate(-8deg);
+  //   }
+  //   30% {
+  //     transform: rotate(14deg);
+  //   }
+  //   40% {
+  //     transform: rotate(-4deg);
+  //   }
+  //   50% {
+  //     transform: rotate(10deg);
+  //   }
+  //   60% {
+  //     transform: rotate(0deg);
+  //   }
+  //   100% {
+  //     transform: rotate(0deg);
+  //   }
+  // }
+}
+
+.lottie-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
 }
 
 .cta-buttons {
@@ -183,7 +230,7 @@ onMounted(() => {
   .tech-icons {
     display: flex;
     gap: 2rem;
-    font-size: 2.5rem;
+    font-size: $font-size-xl;
 
     i {
       transition: all 0.3s ease;

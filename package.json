@@ -12,13 +12,19 @@
     "@vueuse/core": "^10.11.1",
     "aos": "^2.3.4",
     "axios": "^1.7.7",
+    "epic-spinners": "^2.0.0",
     "gsap": "^3.12.5",
+    "lottie-web": "^5.12.2",
     "vue": "^3.5.12",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "vue3-lottie": "^3.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
     "sass": "^1.80.6",
+    "tailwindcss": "^3.4.15",
     "vite": "^5.4.10"
   }
 }

@@ -1,4 +1,5 @@
 <template>
+  <section id="contact" class="section">
     <div class="contact-page">
       <div class="container py-8">
         <h1 class="text-4xl font-bold mb-8">Contact Me</h1>
@@ -13,7 +14,7 @@
                   v-model="form.name"
                   class="w-full bg-opacity-10 bg-white rounded p-2"
                   required
-                >
+                />
               </div>
               <div class="form-group">
                 <label for="email" class="block mb-2">Email</label>
@@ -23,7 +24,7 @@
                   v-model="form.email"
                   class="w-full bg-opacity-10 bg-white rounded p-2"
                   required
-                >
+                />
               </div>
               <div class="form-group">
                 <label for="message" class="block mb-2">Message</label>
@@ -47,7 +48,10 @@
             <div class="space-y-6">
               <div class="contact-item">
                 <h3 class="text-xl font-semibold mb-2">Email</h3>
-                <a href="mailto:your.email@example.com" class="text-primary hover:text-blue-400">
+                <a
+                  href="mailto:your.email@example.com"
+                  class="text-primary hover:text-blue-400"
+                >
                   your.email@example.com
                 </a>
               </div>
@@ -70,44 +74,46 @@
         </div>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { reactive } from 'vue'
-  
-  const form = reactive({
-    name: '',
-    email: '',
-    message: ''
-  })
-  
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log('Form submitted:', form)
-  }
-  </script>
-  
-  <style lang="scss" scoped>
-  .contact-page {
-    min-height: 100vh;
-  }
-  
-  .form-group {
-    input, textarea {
-      background: color.adjust($dark-bg, $lightness: 5%);
-      border: 1px solid color.adjust($dark-bg, $lightness: 10%);
-      color: $light-text;
-      
-      &:focus {
-        border-color: $primary-color;
-        outline: none;
-      }
+  </section>
+</template>
+
+<script setup>
+import { reactive } from "vue";
+
+const form = reactive({
+  name: "",
+  email: "",
+  message: "",
+});
+
+const handleSubmit = () => {
+  // Handle form submission
+  console.log("Form submitted:", form);
+};
+</script>
+
+<style lang="scss" scoped>
+.contact-page {
+  min-height: 100vh;
+}
+
+.form-group {
+  input,
+  textarea {
+    background: color.adjust($dark-bg, $lightness: 5%);
+    border: 1px solid color.adjust($dark-bg, $lightness: 10%);
+    color: $light-text;
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
     }
   }
-  
-  .contact-item {
-    a {
-      transition: color 0.3s ease;
-    }
+}
+
+.contact-item {
+  a {
+    transition: color 0.3s ease;
   }
-  </style>
+}
+</style>

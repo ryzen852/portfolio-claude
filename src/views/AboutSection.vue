@@ -1,11 +1,18 @@
 <template>
-  <div class="about-page">
+  <section class="about-page" id="about">
+    <!-- Lottie Animation Background -->
+    <Vue3Lottie
+      :animationData="lottieOptions.animationData"
+      :autoplay="lottieOptions.autoplay"
+      :loop="lottieOptions.loop"
+      class="lottie-background"
+    />
     <div class="container py-8">
       <h1 class="text-4xl font-bold mb-8 aos-fade">About Me</h1>
       <div class="grid md:grid-cols-2 gap-8">
         <div class="about-content aos-fade">
           <p class="mb-4 text-lg">
-            I'm a full-stack developer passionate about creating beautiful and functional web applications.
+            I'm a full-stack developer, and I'm very passionate and dedicated about creating fancy and functional web applications.
           </p>
           <p class="mb-6 text-lg">
             With experience in Vue.js, Node.js, and modern web technologies, I focus on building scalable and user-friendly solutions.
@@ -36,29 +43,33 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import { AOS } from "aos";
-import "aos/dist/aos.css";
+import { Vue3Lottie } from 'vue3-lottie';
+
+import aboutSectionBackground from '../assets/animations/background-animation.json';
+
+const lottieOptions = {
+  animationData: aboutSectionBackground,
+  autoplay: true,
+  loop: true,
+};
 
 const frontendSkills = ["Vue.js", "React", "HTML/CSS", "JavaScript/TypeScript"];
 const backendSkills = ["Node.js", "Express", "MongoDB", "PostgreSQL"];
 
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    easing: "ease-in-out",
-    once: true,
-  });
-});
+
 </script>
 
 <style lang="scss" scoped>
+
 .about-page {
-  min-height: 100vh;
+  position: relative;
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden;
 }
 
 .about-content {
@@ -66,6 +77,14 @@ onMounted(() => {
     animation: fade-in 0.8s ease-in-out;
   }
 }
+
+.lottie-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  z-index: -1;
+  }
 
 @keyframes fade-in {
   from {

@@ -50,7 +50,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; {{ currentYear }} Built by Karl Chan.</p>
+        <p>&copy; {{ currentYear }} Designed and Built by Karl Chan.</p>
       </div>
     </div>
   </footer>
