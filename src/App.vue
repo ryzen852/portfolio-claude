@@ -1,41 +1,42 @@
 <template>
-  <div class="app">
-    <Suspense>
-      <template #default>
-        <div>
-          <NavBar />
-          <main class="main-content">
-            <HomeSection />
-            <AboutSection />
-            <ProjectsSection />
-            <ContactSection />
-          </main>
-          <AppFooter />
+  <TerminalIntro v-if="!isTerminalAnimationComplete" @loading-complete="onTerminalAnimationComplete" />
+  <Suspense v-else>
+    <template #default>
+      <div class="app">
+        <NavBar />
+        <main class="main-content">
+          <HomeSection />
+          <AboutSection />
+          <ProjectsSection />
+          <ContactSection />
+        </main>
+        <AppFooter />
+      </div>
+    </template>
+    <template #fallback>
+      <div class="loading-screen">
+          <LoadingSpinner />
         </div>
-      </template>
-      <template #fallback>
-        <div class="loading-screen">
-          <LoadingPage />
-        </div>
-      </template>
-    </Suspense>
-  </div>
+    </template>
+  </Suspense>
 </template>
 
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { ref, defineAsyncComponent } from "vue";
+import TerminalIntro from "@/components/TerminalIntro.vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
-import LoadingPage from "./components/LoadingPage.vue";
 
-const HomeSection = defineAsyncComponent({
-  loader: () =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(import("@/views/HomeSection.vue"));
-      }, 9000);
-    }),
-  delay: 200,
-});
+const isTerminalAnimationComplete = ref(false);
+
+const onTerminalAnimationComplete = () => {
+  console.log('Terminal animation complete!');
+  isTerminalAnimationComplete.value = true;
+};
+
+const HomeSection = defineAsyncComponent(() =>
+  import("@/views/HomeSection.vue")
+);
+
 const AboutSection = defineAsyncComponent(() =>
   import("@/views/AboutSection.vue")
 );
@@ -52,7 +53,6 @@ const AppFooter = defineAsyncComponent(() =>
 </script>
 
 <style lang="scss">
-// Import main styles
 @use "@/styles/_main.scss";
 
 .app {
@@ -63,15 +63,15 @@ const AppFooter = defineAsyncComponent(() =>
 
 .main-content {
   flex: 1;
-  padding-top: 80px; // Height of the fixed navbar
+  padding-top: 80px;
   width: 100%;
 }
 
-// .loading-screen {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-//   background-color: $dark-bg;
-// }
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $dark-bg;
+}
 </style>

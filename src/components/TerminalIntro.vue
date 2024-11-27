@@ -5,7 +5,9 @@
         <div v-html="output"></div>
         <div class="command-line">
           <span>{{ currentLine }}</span>
-          <span v-if="!isLoading" class="cursor" :class="{ typing: isTyping }">▮</span>
+          <span v-if="!isLoading" class="cursor" :class="{ typing: isTyping }"
+            >▮</span
+          >
         </div>
       </div>
     </div>
@@ -13,16 +15,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, onUnmounted } from 'vue';
+import { ref, onMounted, nextTick, onUnmounted } from "vue";
 
-const output = ref('');
-const currentLine = ref('');
+// Define emits
+const emit = defineEmits(["loading-complete"]);
+
+const output = ref("");
+const currentLine = ref("");
 const isTyping = ref(false);
 const isLoading = ref(false);
 const terminalRef = ref(null);
 const commandPrefix = "visitor@localhost:~/project % ";
 
-const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const random = (min, max) => Math.round(Math.random() * (max - min) + min);
 
 const typeCommand = async (command) => {
@@ -43,10 +48,10 @@ const addToOutput = async (text) => {
   }
 };
 
-const loadingChars = ['|', '/', '-', '\\'];
+const loadingChars = ["|", "/", "-", "\\"];
 //const loadingChars = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']; // Braille spinner
 // const loadingChars = ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█']; // Progress bar
-// const loadingChars = ['Installing dependencies   ', 
+// const loadingChars = ['Installing dependencies   ',
 //                      'Installing dependencies.  ',
 //                      'Installing dependencies.. ',
 //                      'Installing dependencies...'];
@@ -57,7 +62,7 @@ const startLoading = async (baseText) => {
   let i = 0;
   isLoading.value = true;
   currentLine.value = baseText + " " + loadingChars[0];
-  
+
   loadingInterval = setInterval(() => {
     currentLine.value = baseText + " " + loadingChars[i];
     i = (i + 1) % loadingChars.length;
@@ -107,9 +112,9 @@ const updateTerminal = async () => {
 ✨ Dependencies found
 🔨 Building fresh packages...
 
-⚡️ added ${green('vue@3.4.0')}
-⚡️ added ${green('vue-router@4.2.5')}
-⚡️ added ${green('vite@5.0.10')}
+⚡️ added ${green("vue@3.4.0")}
+⚡️ added ${green("vue-router@4.2.5")}
+⚡️ added ${green("vite@5.0.10")}
 
 ✅ Done in ${yellow(`${random(2, 4)}.${random(10, 99)}s`)}
 ✨ ${yellow(`${random(3, 8)} packages installed`)}
@@ -133,10 +138,12 @@ const updateTerminal = async () => {
   const ip = randomIp();
 
   // Show dev server output
-  await addToOutput(`🚀 ${green(`VITE v5.0.10`)} ${dim(`ready in ${random(150, 300)}ms`)}
+  await addToOutput(`🚀 ${green(`VITE v5.0.10`)} ${dim(
+    `ready in ${random(150, 300)}ms`
+  )}
 
-  ${dim('➜')}  Local:   ${green(`http://localhost:${port}/`)}    🏠
-  ${dim('➜')}  Network: ${cyan(`http://${ip}:${port}/`)}  🌍
+  ${dim("➜")}  Local:   ${green(`http://localhost:${port}/`)}    🏠
+  ${dim("➜")}  Network: ${cyan(`http://${ip}:${port}/`)}  🌍
 
   ${dim(`⭐️ ready in ${random(150, 300)}ms.`)}
 
@@ -144,13 +151,14 @@ const updateTerminal = async () => {
 
   // Show final prompt
   currentLine.value = commandPrefix;
+
+  // Emit loading-complete event when everything is done
+  await wait(1000); // Optional: wait a bit before emitting
+  emit("loading-complete");
 };
 
 onMounted(async () => {
-  const startTime = performance.now();
   await updateTerminal();
-  const endTime = performance.now();
-  console.log(`Terminal startup took ${(endTime - startTime).toFixed(2)}ms`);
 });
 
 // Make sure to clean up the interval when component is unmounted
@@ -241,15 +249,15 @@ body {
   font: 1.3rem Inconsolata, monospace;
   color: $white;
   text-shadow: 0 0 5px $white;
-  
+
   // Hide scrollbar for Chrome, Safari and Opera
   &::-webkit-scrollbar {
     display: none;
   }
-  
+
   // Hide scrollbar for IE, Edge and Firefox
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .command-line {
@@ -261,7 +269,7 @@ body {
   display: inline-block;
   margin-left: 2px;
   animation: blink 1s steps(1) infinite;
-  
+
   &.typing {
     animation: none;
     opacity: 1;
@@ -269,7 +277,12 @@ body {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 </style>
