@@ -29,7 +29,7 @@
       </h1>
       <h2 class="intro-description">
         I'm a
-        <TextRotator :texts="roles" :interval="3000" :animationSpeed="1" />
+        <TextRotator :texts="roles" :interval="5000" :animationSpeed="1" />
       </h2>
       <p class="subtitle">
         Building beautiful web experiences with modern technologies

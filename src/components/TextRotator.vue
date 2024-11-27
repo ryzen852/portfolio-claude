@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'; // Add onUnmounted for cleanup
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
   texts: {
@@ -10,24 +10,27 @@ const props = defineProps({
     type: Number,
     default: 3000,
   },
-  animationSpeed: {  // Add animation speed prop
+  animationSpeed: {
     type: Number,
     default: 0.5
   }
 });
 
 const currentIndex = ref(0);
-let intervalId; // Store interval ID for cleanup
+let intervalId;
+const isInitialized = ref(false);
 
 const rotateText = () => {
   currentIndex.value = (currentIndex.value + 1) % props.texts.length;
 };
 
 onMounted(() => {
-  intervalId = setInterval(rotateText, props.interval);
+  setTimeout(() => {
+    isInitialized.value = true;
+    intervalId = setInterval(rotateText, props.interval);
+  }, 1500);
 });
 
-// Cleanup interval on component unmount
 onUnmounted(() => {
   if (intervalId) clearInterval(intervalId);
 });
@@ -36,6 +39,13 @@ onUnmounted(() => {
 <template>
   <div class="text-rotator">
     <div 
+      v-if="!isInitialized" 
+      class="initial-text"
+    >
+      {{ texts[0] }}
+    </div>
+    <div 
+      v-else
       class="text" 
       :key="currentIndex"
       :style="{ 
@@ -55,27 +65,36 @@ onUnmounted(() => {
   overflow: hidden;
   height: 1.5em;
   vertical-align: middle;
-  min-width: 200px; // Add minimum width to prevent layout shifts
+  min-width: 200px;
+}
+
+.initial-text {
+  position: relative;
+  width: 100%;
+  opacity: 1;
+  white-space: nowrap;
 }
 
 .text {
   position: relative;
   width: 100%;
-  transition: transform var(--animation-speed) ease-in-out;
-  transform: translateY(-100%);
-  animation: slideDown infinite;
-  white-space: nowrap; // Prevent text wrapping
+  transition: all var(--animation-speed) ease-in-out;
+  animation: fadeSlideDown infinite;
+  white-space: nowrap;
 }
 
-@keyframes slideDown {
-  0%, 20% {
-    transform: translateY(-100%);
+@keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
   }
-  25%, 75% {
+  10%, 90% {
+    opacity: 1;
     transform: translateY(0);
   }
-  80%, 100% {
-    transform: translateY(100%);
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
   }
 }
 </style> 

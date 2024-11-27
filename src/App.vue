@@ -15,7 +15,7 @@
       </template>
       <template #fallback>
         <div class="loading-screen">
-          <LoadingSpinner />
+          <LoadingPage />
         </div>
       </template>
     </Suspense>
@@ -25,13 +25,14 @@
 <script setup>
 import { defineAsyncComponent } from "vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
+import LoadingPage from "./components/LoadingPage.vue";
 
 const HomeSection = defineAsyncComponent({
   loader: () =>
     new Promise((resolve) => {
       setTimeout(() => {
         resolve(import("@/views/HomeSection.vue"));
-      }, 2000);
+      }, 9000);
     }),
   delay: 200,
 });
@@ -66,11 +67,11 @@ const AppFooter = defineAsyncComponent(() =>
   width: 100%;
 }
 
-.loading-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: $dark-bg;
-}
+// .loading-screen {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+//   background-color: $dark-bg;
+// }
 </style>
