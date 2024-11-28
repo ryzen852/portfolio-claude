@@ -16,7 +16,6 @@ export default defineConfig({
           @use "@/styles/variables.scss" as *; 
           @use "sass:color"; 
         `,
-        api: 'modern-compiler' // or "modern"
       },
     },
   },
