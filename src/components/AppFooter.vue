@@ -6,8 +6,7 @@
         <div class="footer-section">
           <h3 class="footer-title">Karl Chan</h3>
           <p class="footer-description">
-            Full Stack Developer passionate about creating beautiful web
-            experiences
+            Full Stack Developer passionate about creating beautiful web experiences
           </p>
         </div>
 
@@ -24,25 +23,13 @@
         <div class="footer-section">
           <h4>Connect</h4>
           <div class="social-links">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-github"></i>
             </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-linkedin"></i>
             </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-twitter"></i>
             </a>
           </div>
@@ -57,7 +44,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed } from 'vue';
 
 const currentYear = computed(() => new Date().getFullYear());
 </script>
@@ -75,7 +62,7 @@ const currentYear = computed(() => new Date().getFullYear());
   gap: 2rem;
   margin-bottom: 2rem;
 
-  @include responsive("md") {
+  @include responsive('md') {
     grid-template-columns: 2fr 1fr 1fr;
   }
 }

@@ -28,28 +28,28 @@ const displayText = ref('');
 
 const typeText = async () => {
   // Initial delay before starting
-  await new Promise(resolve => setTimeout(resolve, props.initialDelay));
+  await new Promise((resolve) => setTimeout(resolve, props.initialDelay));
 
   while (true) {
     const text = props.texts[0]; // Since we're only using one text: 'Karl Chan'
-    
+
     // Type the text
     for (let i = 0; i <= text.length; i++) {
       displayText.value = text.substring(0, i);
-      await new Promise(resolve => setTimeout(resolve, props.typeSpeed));
+      await new Promise((resolve) => setTimeout(resolve, props.typeSpeed));
     }
-    
+
     // Pause at full text
-    await new Promise(resolve => setTimeout(resolve, props.delayBetween));
-    
+    await new Promise((resolve) => setTimeout(resolve, props.delayBetween));
+
     // Delete the text
     for (let i = text.length; i >= 0; i--) {
       displayText.value = text.substring(0, i);
-      await new Promise(resolve => setTimeout(resolve, props.deleteSpeed));
+      await new Promise((resolve) => setTimeout(resolve, props.deleteSpeed));
     }
-    
+
     // Small pause before restarting
-    await new Promise(resolve => setTimeout(resolve, props.deleteSpeed * 2));
+    await new Promise((resolve) => setTimeout(resolve, props.deleteSpeed * 2));
   }
 };
 
@@ -60,4 +60,4 @@ onMounted(() => {
 
 <template>
   <span>{{ displayText }}</span>
-</template> 
+</template>

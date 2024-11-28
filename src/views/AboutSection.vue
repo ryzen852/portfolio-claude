@@ -12,10 +12,12 @@
       <div class="grid md:grid-cols-2 gap-8">
         <div class="about-content aos-fade">
           <p class="mb-4 text-lg">
-            I'm a full-stack developer, and I'm very passionate and dedicated about creating fancy and functional web applications.
+            I'm a full-stack developer, and I'm very passionate and dedicated about creating fancy
+            and functional web applications.
           </p>
           <p class="mb-6 text-lg">
-            With experience in Vue.js, Node.js, and modern web technologies, I focus on building scalable and user-friendly solutions.
+            With experience in Vue.js, Node.js, and modern web technologies, I focus on building
+            scalable and user-friendly solutions.
           </p>
           <div class="skills-section">
             <h2 class="text-2xl font-semibold mb-4">Skills</h2>
@@ -57,18 +59,15 @@ const lottieOptions = {
   loop: true,
 };
 
-const frontendSkills = ["Vue.js", "React", "HTML/CSS", "JavaScript/TypeScript"];
-const backendSkills = ["Node.js", "Express", "MongoDB", "PostgreSQL"];
-
-
+const frontendSkills = ['Vue.js', 'React', 'HTML/CSS', 'JavaScript/TypeScript'];
+const backendSkills = ['Node.js', 'Express', 'MongoDB', 'PostgreSQL'];
 </script>
 
 <style lang="scss" scoped>
-
 .about-page {
   position: relative;
   width: 100vw;
-  height: 100vh; 
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -84,7 +83,7 @@ const backendSkills = ["Node.js", "Express", "MongoDB", "PostgreSQL"];
   left: 0;
   height: auto;
   z-index: -1;
-  }
+}
 
 @keyframes fade-in {
   from {

@@ -2,14 +2,13 @@
 $halloween-purple: #6e1e9d;
 $halloween-green: #4a9d1e;
 
-$primary-color: #ff6b1a;    // Bright Orange
-$secondary-color: $halloween-purple;   // Dark Gray/Black
-$background-color: #393636;  // Pure Black
+$primary-color: #ff6b1a; // Bright Orange
+$secondary-color: $halloween-purple; // Dark Gray/Black
+$background-color: #393636; // Pure Black
 $dark-bg: $background-color;
-$light-text: #ffffff;        // White
-$dark-text: #1a1a1a;        // Dark Gray/Black
-$accent-color: #9b4800;      // Dark Orange
-
+$light-text: #ffffff; // White
+$dark-text: #1a1a1a; // Dark Gray/Black
+$accent-color: #9b4800; // Dark Orange
 
 //$primary-color: #2563eb;
 ////$primary-color: #ff1d5e;
@@ -51,10 +50,10 @@ $breakpoints: (
   'sm': 640px,
   'md': 768px,
   'lg': 1024px,
-  'xl': 1280px
+  'xl': 1280px,
 );
 
-@use "sass:map"; // Import the map module
+@use 'sass:map'; // Import the map module
 
 // Responsive Mixin
 @mixin responsive($breakpoint) {

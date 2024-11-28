@@ -34,11 +34,7 @@
           Contact
         </a>
       </div>
-      <button
-        class="menu-toggle"
-        @click="toggleMenu"
-        :class="{ 'is-active': isMenuOpen }"
-      >
+      <button class="menu-toggle" @click="toggleMenu" :class="{ 'is-active': isMenuOpen }">
         <span></span>
         <span></span>
         <span></span>
@@ -48,16 +44,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const isMenuOpen = ref(false);
 const isScrolled = ref(false);
-const activeSection = ref("home");
+const activeSection = ref('home');
 
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId);
   if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
+    element.scrollIntoView({ behavior: 'smooth' });
     isMenuOpen.value = false;
   }
 };
@@ -70,7 +66,7 @@ const checkScroll = () => {
   isScrolled.value = window.scrollY > 50;
 
   // Check which section is currently in view
-  const sections = ["home", "about", "projects", "contact"];
+  const sections = ['home', 'about', 'projects', 'contact'];
   for (const section of sections) {
     const element = document.getElementById(section);
     if (element) {
@@ -85,12 +81,12 @@ const checkScroll = () => {
 };
 
 onMounted(() => {
-  window.addEventListener("scroll", checkScroll);
+  window.addEventListener('scroll', checkScroll);
   checkScroll(); // Initial check
 });
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", checkScroll);
+  window.removeEventListener('scroll', checkScroll);
 });
 </script>
 
@@ -131,7 +127,7 @@ nav {
   display: flex;
   gap: 2rem;
 
-  @include responsive("md-down") {
+  @include responsive('md-down') {
     position: fixed;
     top: 0;
     left: 0;
@@ -155,7 +151,7 @@ nav {
     transition: color $transition-speed;
     font-size: 1rem;
 
-    @include responsive("md-down") {
+    @include responsive('md-down') {
       font-size: 1.5rem;
     }
 
@@ -174,7 +170,7 @@ nav {
   padding: 0.5rem;
   z-index: 101;
 
-  @include responsive("md-down") {
+  @include responsive('md-down') {
     display: flex;
     flex-direction: column;
     gap: 6px;

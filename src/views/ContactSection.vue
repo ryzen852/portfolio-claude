@@ -48,10 +48,7 @@
             <div class="space-y-6">
               <div class="contact-item">
                 <h3 class="text-xl font-semibold mb-2">Email</h3>
-                <a
-                  href="mailto:your.email@example.com"
-                  class="text-primary hover:text-blue-400"
-                >
+                <a href="mailto:your.email@example.com" class="text-primary hover:text-blue-400">
                   your.email@example.com
                 </a>
               </div>
@@ -78,17 +75,17 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive } from 'vue';
 
 const form = reactive({
-  name: "",
-  email: "",
-  message: "",
+  name: '',
+  email: '',
+  message: '',
 });
 
 const handleSubmit = () => {
   // Handle form submission
-  console.log("Form submitted:", form);
+  console.log('Form submitted:', form);
 };
 </script>
 
