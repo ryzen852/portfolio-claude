@@ -29,7 +29,13 @@
       </h1>
       <h2 class="intro-description">
         I'm a
-        <TextRotator :texts="roles" :interval="5000" :animationSpeed="1" />
+        <GlitchedWriter
+          class="roboto-mono-roles"
+          :text="phrases"
+          preset="neo"
+          :options="writerOptions"
+          :queue="queueOptions"
+        />
       </h2>
       <p class="subtitle">Building beautiful web experiences with modern technologies</p>
       <div class="cta-buttons">
@@ -53,7 +59,17 @@ import { Vue3Lottie } from 'vue3-lottie';
 import homeBackground from '@/assets/animations/Animation - 1731482932424.json'; // Path to your JSON file
 import TypeWriter from '@/components/TypeWriter.vue';
 import TextRotator from '@/components/TextRotator.vue';
+import GlitchedWriter, { presets } from 'vue-glitched-writer';
 
+const phrases = ref(['Full Stack Developer', 'Frontend Developer', 'Backend Developer']);
+const writerOptions = {
+  letterize: false,
+  //glyphs: 'QWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()1234567890',
+};
+const queueOptions = {
+  interval: 1000,
+  loop: true,
+};
 const lottieOptions = {
   animationData: homeBackground,
   autoplay: true,
@@ -72,13 +88,13 @@ const techIcons = ref([
 ]);
 const roles = ref(['Full Stack Developer', 'Frontend Developer', 'Backend Developer']);
 
-// Control the emoji wave animation with a cooldown to prevent multiple activations
-const handleWaveClick = () => {
-  if (!isWaving.value) {
-    isWaving.value = true;
-    setTimeout(() => (isWaving.value = false), 2000); // Set cooldown to match animation duration
-  }
-};
+// // Control the emoji wave animation with a cooldown to prevent multiple activations
+// const handleWaveClick = () => {
+//   if (!isWaving.value) {
+//     isWaving.value = true;
+//     setTimeout(() => (isWaving.value = false), 2000); // Set cooldown to match animation duration
+//   }
+// };
 
 onMounted(() => {
   gsap.from(titleRef.value, {
@@ -103,6 +119,13 @@ onMounted(() => {
   align-items: center;
   padding: 6rem 0;
 
+  .roboto-mono-roles {
+    font-family: 'Roboto Mono', monospace;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+  }
+
   .turret-road-extrabold {
     font-family: 'Turret Road', sans-serif;
     font-weight: 800;
@@ -111,6 +134,8 @@ onMounted(() => {
 
   .intro-description {
     font-size: $font-size-lg;
+    will-change: contents;
+    min-height: 2em;
   }
 
   .title {
