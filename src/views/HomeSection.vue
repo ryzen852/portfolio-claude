@@ -6,16 +6,16 @@
       :loop="lottieOptions.loop"
       class="lottie-background"
     />-->
-    <div class="container">
-      <h1 class="title" ref="titleRef">
+    <div class="container mx-auto px-4">
+      <h1 ref="titleRef" class="title text-primary">
         <div class="text-2xl mb-4">Hi, My name is</div>
         <TypeWriter
-          class="highlight turret-road-extrabold"
+          class="highlight turret-road-extrabold text-4xl"
           :texts="['Karl Chan']"
-          :typeSpeed="150"
-          :deleteSpeed="100"
-          :delayBetween="4000"
-          :initialDelay="1000"
+          :type-speed="150"
+          :delete-speed="100"
+          :delay-between="4000"
+          :initial-delay="1000"
         />
         <!-- <span
           class="waving-emoji"
@@ -31,7 +31,7 @@
         I'm a
         <GlitchedWriter
           class="roboto-mono-roles"
-          :text="phrases"
+          :text="roles"
           preset="neo"
           :options="writerOptions"
           :queue="queueOptions"
@@ -61,7 +61,7 @@ import TypeWriter from '@/components/TypeWriter.vue';
 import TextRotator from '@/components/TextRotator.vue';
 import GlitchedWriter, { presets } from 'vue-glitched-writer';
 
-const phrases = ref(['Full Stack Developer', 'Frontend Developer', 'Backend Developer']);
+const roles = ref(['Full Stack Developer', 'Frontend Developer', 'Backend Developer']);
 const writerOptions = {
   letterize: false,
   //glyphs: 'QWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()1234567890',
@@ -86,7 +86,6 @@ const techIcons = ref([
   { name: 'Docker', class: 'devicon-docker-plain' },
   { name: 'Git', class: 'devicon-git-plain' },
 ]);
-const roles = ref(['Full Stack Developer', 'Frontend Developer', 'Backend Developer']);
 
 // // Control the emoji wave animation with a cooldown to prevent multiple activations
 // const handleWaveClick = () => {
@@ -109,151 +108,4 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.hero {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 6rem 0;
-
-  .roboto-mono-roles {
-    font-family: 'Roboto Mono', monospace;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
-  }
-
-  .turret-road-extrabold {
-    font-family: 'Turret Road', sans-serif;
-    font-weight: 800;
-    font-style: normal;
-  }
-
-  .intro-description {
-    font-size: $font-size-lg;
-    will-change: contents;
-    min-height: 2em;
-  }
-
-  .title {
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-
-    .highlight {
-      color: $primary-color;
-      white-space: nowrap;
-    }
-  }
-
-  .subtitle {
-    font-size: $font-size-lg;
-    margin-bottom: 2rem;
-    opacity: 0.5;
-  }
-
-  // .waving-emoji {
-  //   font-size: 50px;
-  //   display: inline-block;
-  //   cursor: pointer;
-  //   transform-origin: bottom center;
-  //   transition: transform 0.2s ease;
-  // }
-
-  // .waving {
-  //   animation: wave 2s ease-in-out;
-  // }
-
-  // @keyframes wave {
-  //   0% {
-  //     transform: rotate(0deg);
-  //   }
-  //   10% {
-  //     transform: rotate(14deg);
-  //   }
-  //   20% {
-  //     transform: rotate(-8deg);
-  //   }
-  //   30% {
-  //     transform: rotate(14deg);
-  //   }
-  //   40% {
-  //     transform: rotate(-4deg);
-  //   }
-  //   50% {
-  //     transform: rotate(10deg);
-  //   }
-  //   60% {
-  //     transform: rotate(0deg);
-  //   }
-  //   100% {
-  //     transform: rotate(0deg);
-  //   }
-  // }
-}
-
-.lottie-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-}
-
-.cta-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 3rem;
-
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all $transition-speed;
-
-    &.primary {
-      background: $primary-color;
-      color: $light-text;
-
-      &:hover {
-        background: color.adjust($primary-color, $lightness: -10%);
-      }
-    }
-
-    &.secondary {
-      border: 2px solid $primary-color;
-      color: $primary-color;
-
-      &:hover {
-        background: $primary-color;
-        color: $light-text;
-      }
-    }
-  }
-}
-
-.tech-stack {
-  h3 {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-  }
-
-  .tech-icons {
-    display: flex;
-    gap: 2rem;
-    font-size: $font-size-xl;
-
-    i {
-      transition: all 0.3s ease;
-
-      &:hover {
-        color: $primary-color;
-        transform: translateY(-5px);
-      }
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

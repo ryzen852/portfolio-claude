@@ -1,0 +1,68 @@
+:root {
+  /* primary color */
+  --primary-h: 24;
+  --primary-s: 74%;
+  --primary-l: 58%;
+  --primary-color: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
+
+  /* secondary color */
+  --secondary-h: 13;
+  --secondary-s: 96%;
+  --secondary-l: 47%;
+  --secondary-color: hsl(var(--secondary-h), var(--secondary-s), var(--secondary-l));
+
+  /* light color */
+  --light-h: 0;
+  --light-s: 0%;
+  --light-l: 100%;
+  --light-color: hsl(var(--light-h), var(--light-s), var(--light-l));
+
+  /* dark color */
+  --dark-h: 0;
+  --dark-s: 0%;
+  --dark-l: 12%;
+  --dark-color: hsl(var(--dark-h), var(--dark-s), var(--dark-l));
+
+  /* success color */
+  --success-h: 135;
+  --success-s: 60%;
+  --success-l: 40%;
+  --success-color: hsl(var(--success-h), var(--success-s), var(--success-l));
+
+  /* danger color */
+  --danger-h: 355;
+  --danger-s: 70%;
+  --danger-l: 55%;
+  --danger-color: hsl(var(--danger-h), var(--danger-s), var(--danger-l));
+
+  /* warning color */
+  --warning-h: 45;
+  --warning-s: 100%;
+  --warning-l: 50%;
+  --warning-color: hsl(var(--warning-h), var(--warning-s), var(--warning-l));
+
+  /* info color */
+  --info-h: 180;
+  --info-s: 80%;
+  --info-l: 40%;
+  --info-color: hsl(var(--info-h), var(--info-s), var(--info-l));
+}
+
+// // Halloween Theme Colors
+// $halloween-purple: #6e1e9d;
+// $halloween-green: #4a9d1e;
+
+// $primary-color: #ff6b1a; // Bright Orange
+// $secondary-color: $halloween-purple; // Dark Gray/Black
+// $background-color: #393636; // Pure Black
+// $dark-bg: $background-color;
+// $light-text: #ffffff; // White
+// $dark-text: #1a1a1a; // Dark Gray/Black
+// $accent-color: #9b4800; // Dark Orange
+
+//$primary-color: #2563eb;
+////$primary-color: #ff1d5e;
+//$secondary-color: #3b82f6;
+//$dark-bg: #0f172a;
+////$dark-bg: #3c2747;
+//$light-text: #f8fafc;

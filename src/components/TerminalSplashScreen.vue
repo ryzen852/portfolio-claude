@@ -92,17 +92,17 @@ const yellow = (text) => `<span style="color: #ffff00">${text}</span>`;
 const updateTerminal = async () => {
   // Initial prompt
   currentLine.value = commandPrefix;
-  await wait(500);
+  //await wait(500);
 
   // Type npm install
-  await typeCommand('npm install');
-  await wait(800);
+  //await typeCommand('npm install');
+  //await wait(800);
 
   // Add command to output and start loading animation
   await addToOutput(`${commandPrefix}npm install\n`);
   currentLine.value = '';
   await startLoading('📦 Installing dependencies');
-  await wait(1000);
+  await wait(200);
   stopLoading();
 
   // Show installation progress with emojis
@@ -112,7 +112,7 @@ const updateTerminal = async () => {
 
 ⚡️ added ${green('vue@3.4.0')}
 ⚡️ added ${green('vue-router@4.2.5')}
-⚡️ added ${green('vite@5.0.10')}
+⚡️ added ${green('vite@6.0.1')}
 
 ✅ Done in ${yellow(`${random(2, 4)}.${random(10, 99)}s`)}
 ✨ ${yellow(`${random(3, 8)} packages installed`)}
@@ -123,13 +123,13 @@ const updateTerminal = async () => {
   currentLine.value = commandPrefix;
   await wait(500);
   await typeCommand('npm run dev');
-  await wait(800);
+  await wait(500);
 
   // Add command and start dev server loading
   await addToOutput(`${commandPrefix}npm run dev\n`);
   currentLine.value = '';
   await startLoading('🚀 Starting dev server');
-  await wait(1500);
+  await wait(1000);
   stopLoading();
 
   const port = randomPort();

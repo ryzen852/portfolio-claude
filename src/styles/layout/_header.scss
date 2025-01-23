@@ -1,0 +1,120 @@
+@use '../abstracts' as *;
+
+nav {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  transition:
+    background $transition-speed,
+    box-shadow $transition-speed;
+  padding: 1rem 0;
+
+  &.nav-scrolled {
+    background: var(--dark-color);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  transition:
+    transform $transition-speed ease,
+    opacity $transition-speed ease;
+
+  &.nav-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    a {
+      color: var(--light-color);
+      text-decoration: none;
+      transition: color $transition-speed;
+
+      &:hover,
+      &.active {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 101;
+  transition: transform $transition-speed ease;
+
+  &.is-active {
+    transform: rotate(90deg);
+  }
+
+  span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--light-color);
+    transition: all $transition-speed;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform $transition-speed ease,
+      opacity $transition-speed ease;
+
+    &.nav-active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

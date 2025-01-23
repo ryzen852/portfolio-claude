@@ -1,0 +1,21 @@
+@use '../abstracts' as *;
+
+.projects-page {
+  min-height: 100vh;
+}
+
+.project-card {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.tech-tag {
+  background: rgba(var(--primary-color), 0.2);
+  color: var(--primary-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}

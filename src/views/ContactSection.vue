@@ -1,77 +1,169 @@
 <template>
-  <section id="contact" class="section">
-    <div class="contact-page">
-      <div class="container py-8">
-        <h1 class="text-4xl font-bold mb-8">Contact Me</h1>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="contact-form">
-            <form @submit.prevent="handleSubmit" class="space-y-6">
-              <div class="form-group">
-                <label for="name" class="block mb-2">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  v-model="form.name"
-                  class="w-full bg-opacity-10 bg-white rounded p-2"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="email" class="block mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  v-model="form.email"
-                  class="w-full bg-opacity-10 bg-white rounded p-2"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="message" class="block mb-2">Message</label>
-                <textarea
-                  id="message"
-                  v-model="form.message"
-                  rows="5"
-                  class="w-full bg-opacity-10 bg-white rounded p-2"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="bg-primary hover:bg-blue-600 text-white px-6 py-2 rounded transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
+  <!-- start of contact section -->
+  <section id="contact" class="contact-section section" tabindex="-1">
+    <div class="container mx-auto px-4">
+      <div class="section-content grid grid-cols-12">
+        <!-- text box -->
+        <div class="contact-text col-span-12 lg:col-span-6">
+          <div class="text-box-inline">
+            <span class="subtitle">contact</span>
+            <h2>
+              Have You Any Project?
+              <br />
+              Please Drop a Message
+            </h2>
+            <p>
+              Get in touch and let me know how i can help. Fill out the form and i’ll be in touch as
+              soon as possible.
+            </p>
           </div>
-          <div class="contact-info">
-            <div class="space-y-6">
-              <div class="contact-item">
-                <h3 class="text-xl font-semibold mb-2">Email</h3>
-                <a href="mailto:your.email@example.com" class="text-primary hover:text-blue-400">
-                  your.email@example.com
-                </a>
+
+          <!-- contact info -->
+          <ul class="contact-info">
+            <li>
+              <img src="@/assets/icons/address.png" alt="Address" />
+              <div>
+                <strong>Address:</strong>
+                Richmond, BC, Vancouver
               </div>
-              <div class="contact-item">
-                <h3 class="text-xl font-semibold mb-2">Social</h3>
-                <div class="flex gap-4">
-                  <a href="#" class="text-2xl text-primary hover:text-blue-400">
-                    <i class="fab fa-github"></i>
-                  </a>
-                  <a href="#" class="text-2xl text-primary hover:text-blue-400">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                  <a href="#" class="text-2xl text-primary hover:text-blue-400">
-                    <i class="fab fa-twitter"></i>
-                  </a>
+            </li>
+            <!-- <li>
+              <img src="@/assets/icons/phone.png" alt="Phone" />
+              <div>
+                <strong>Phone:</strong>
+
+                <ul>
+                  <li>
+                    <a href="tel:+18167967170" class="ltr-dir"> (+1) 816 796 7170 </a>
+                  </li>
+                </ul>
+              </div>
+            </li> -->
+
+            <li>
+              <img src="@/assets/icons/email.png" alt="Email" />
+              <div>
+                <strong>Email:</strong>
+                <ul>
+                  <li>
+                    <a href="mailto:ryzen.sript@gmail.com">ryzen.sript@gmail.com</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+
+          <!-- social links -->
+          <ul class="social">
+            <li>
+              <a href="#" target="_blank" rel="noreferrer">
+                <i class="fab fa-facebook" aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noreferrer">
+                <i class="fab fa-twitter" aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noreferrer">
+                <i class="fab fa-linkedin" aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noreferrer">
+                <i class="fab fa-youtube" aria-hidden="true" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- contact form -->
+        <div class="col-span-12 lg:col-span-6">
+          <form
+            ref="contactForm"
+            class="contact-form form-styled"
+            data-success-msg="Message sent successfully!"
+            data-err-msg="Oops! something went wrong, please try again."
+          >
+            <div class="group">
+              <label>Name</label>
+              <div class="control has-prefix-icon">
+                <input type="text" name="name" placeholder="" minlength="3" required />
+                <i class="fas fa-user-circle prefix-icon" aria-hidden="true" />
+
+                <!-- validation errors messages -->
+                <div class="errors-msgs">
+                  <input class="required" type="hidden" value="Name is required" />
+                  <input
+                    class="minLength"
+                    type="hidden"
+                    value="Name must be at least 3 characters"
+                  />
                 </div>
               </div>
             </div>
-          </div>
+            <div class="group">
+              <label>Email</label>
+              <div class="control has-prefix-icon">
+                <input
+                  class="ltr-dir"
+                  type="email"
+                  inputmode="email"
+                  name="email"
+                  placeholder=""
+                  required
+                />
+                <i class="fas fa-envelope prefix-icon" aria-hidden="true" />
+
+                <!-- validation errors messages -->
+                <div class="errors-msgs">
+                  <input class="required" type="hidden" value="Email is required" />
+                  <input class="invalid" type="hidden" value="Please enter a valid email address" />
+                </div>
+              </div>
+            </div>
+            <div class="group phone-number">
+              <label>Phone <span class="optional">(Optional)</span></label>
+              <div class="control has-prefix-icon">
+                <input type="tel" inputmode="tel" name="phone" placeholder="Phone Number" />
+                <i class="fas fa-phone prefix-icon" aria-hidden="true" />
+
+                <!-- validation errors messages -->
+                <div class="errors-msgs">
+                  <input class="invalid" type="hidden" value="Please enter a valid Phone Number" />
+                </div>
+              </div>
+            </div>
+            <div class="group">
+              <label>Message</label>
+              <div class="control has-prefix-icon">
+                <textarea name="message" placeholder="Write message..." required></textarea>
+                <i class="fas fa-comments prefix-icon" aria-hidden="true" />
+
+                <!-- validation errors messages -->
+                <div class="errors-msgs">
+                  <input class="required" type="hidden" value="Message is required" />
+                </div>
+              </div>
+            </div>
+            <div class="group">
+              <div class="control">
+                <button
+                  class="submit-btn btn btn-dark"
+                  type="button"
+                  @click="contactFormValidation"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
+  <!-- end of contact section -->
 </template>
 
 <script setup>
@@ -89,9 +181,42 @@ const handleSubmit = () => {
 };
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 .contact-page {
   min-height: 100vh;
+}
+
+.contact-info {
+  margin-top: 50px;
+
+  li {
+    display: flex;
+    align-content: flex-start;
+  }
+  > li:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+  li img {
+    filter: invert(1);
+    margin-right: 18px;
+    height: 24px;
+  }
+}
+
+.social {
+  margin: 30px -5px -10px;
+  display: flex;
+  align-items: center;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    margin: 0 5px 10px;
+    border-radius: 50%;
+    background-color: white;
+  }
 }
 
 .form-group {
@@ -113,4 +238,4 @@ const handleSubmit = () => {
     transition: color 0.3s ease;
   }
 }
-</style>
+</style> -->

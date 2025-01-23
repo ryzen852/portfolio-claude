@@ -3,7 +3,11 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 
 export default defineConfig({
+  base: process.env.BASE_URL ?? '/',
   plugins: [vue()],
+  server: {
+    host: '0.0.0.0',
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -13,7 +17,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @use "@/styles/variables.scss" as *; 
+          
           @use "sass:color"; 
         `,
       },

@@ -1,0 +1,160 @@
+<template>
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="grid grid-cols-12 gap-4">
+        <!-- text box -->
+        <div class="col-span-6">
+          <div class="text-box-inline">
+            <span class="subtitle">contact</span>
+            <h2>Just reach out to me</h2>
+            <p>
+              Get in touch and let me know how I can help. Please fill out the form and i'll respond
+              as soon as possible.
+            </p>
+          </div>
+
+          <!-- contact info -->
+          <ul class="contact-info">
+            <li>
+              <img src="@/assets/icons/address.png" alt="Address" />
+              <div>
+                <strong>Address:</strong>
+                779 Big Elm Kansas City Missouri USA
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/icons/phone.png" alt="Phone" />
+              <div>
+                <strong>Phone:</strong>
+
+                <ul>
+                  <li>
+                    <a href="tel:+18167967170" class="ltr-dir"> (+1) 604 999 9999 </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li>
+              <img src="@/assets/icons/email.png" alt="Email" />
+              <div>
+                <strong>Email:</strong>
+                <ul>
+                  <li>
+                    <a href="mailto:info@Website.com">info@Website.com</a>
+                  </li>
+                  <li>
+                    <a href="mailto:support@Website.com">support@Website.com</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+
+          <!-- social links -->
+          <ul class="social">
+            <li>
+              <a href="#" target="_blank">
+                <i class="fab fa-facebook" aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank">
+                <i class="fab fa-twitter" aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank">
+                <i class="fab fa-linkedin" aria-hidden="true" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- contact form -->
+        <div class="col-span-6">
+          <form
+            ref="contactForm"
+            class="contact-form bg-white p-6 rounded-lg shadow-md"
+            data-success-msg="Message sent successfully!"
+            data-err-msg="Oops! something went wrong, please try again."
+          >
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700">Name</label>
+              <div class="relative">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="e.g. John Doe"
+                  minlength="3"
+                  required
+                  class="border border-gray-300 rounded-md p-2 w-full"
+                />
+                <i
+                  class="fas fa-user-circle absolute right-3 top-2 text-gray-400"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700">Email</label>
+              <div class="relative">
+                <input
+                  class="border border-gray-300 rounded-md p-2 w-full"
+                  type="email"
+                  inputmode="email"
+                  name="email"
+                  placeholder="e.g. john.doe@gmail.com"
+                  required
+                />
+                <i
+                  class="fas fa-envelope absolute right-3 top-2 text-gray-400"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700"
+                >Phone <span class="text-gray-500">(Optional)</span></label
+              >
+              <div class="relative">
+                <input
+                  type="tel"
+                  inputmode="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  class="border border-gray-300 rounded-md p-2 w-full"
+                />
+                <i class="fas fa-phone absolute right-3 top-2 text-gray-400" aria-hidden="true" />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700">Message</label>
+              <div class="relative">
+                <textarea
+                  name="message"
+                  placeholder="Write message..."
+                  required
+                  class="border border-gray-300 rounded-md p-2 w-full"
+                ></textarea>
+                <i
+                  class="fas fa-comments absolute right-3 top-2 text-gray-400"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                class="submit-btn bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                type="button"
+                @click="contactFormValidation"
+              >
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
